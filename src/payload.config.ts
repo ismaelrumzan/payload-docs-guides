@@ -1,10 +1,15 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { lexicalEditor, FixedToolbarFeature, EXPERIMENTAL_TableFeature } from '@payloadcms/richtext-lexical'
-import path from 'path'
+import {
+  lexicalEditor,
+  FixedToolbarFeature,
+  EXPERIMENTAL_TableFeature,
+  BlocksFeature,
+} from '@payloadcms/richtext-lexical'
+import { Code } from '@/blocks/Code/config'
+import path from 'node:path'
 import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 
 import { Users } from './collections/Users'
@@ -34,7 +39,8 @@ export default buildConfig({
       return [
         ...defaultFeatures,
         FixedToolbarFeature(),
-        EXPERIMENTAL_TableFeature()
+        EXPERIMENTAL_TableFeature(),
+        BlocksFeature({ blocks: [Code] }),
       ]
     },
   }),
@@ -49,7 +55,6 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
 })
