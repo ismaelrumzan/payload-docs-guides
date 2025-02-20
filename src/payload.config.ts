@@ -6,6 +6,7 @@ import {
   EXPERIMENTAL_TableFeature,
   BlocksFeature,
 } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { Code } from '@/blocks/Code/config'
 import path from 'node:path'
 import { buildConfig } from 'payload'
@@ -55,6 +56,11 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    // storage-adapter-placeholder
+    vercelBlobStorage({
+      collections: {
+        [Media.slug]: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
   ],
 })
