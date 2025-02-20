@@ -1,13 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { Code } from '../../blocks/Code/config'
-import {
-  FixedToolbarFeature,
-  BlocksFeature,
-  HeadingFeature,
-  HorizontalRuleFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
 import { Topics } from './topics'
 
 export const guidesSlug = 'guides'
