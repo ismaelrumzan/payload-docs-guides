@@ -16,6 +16,8 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { GuidesCollection } from './collections/Guides/index'
+import { SharedCodeCollection } from './collections/SharedCode'
+import { SharedCode } from './blocks/SharedCode/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -31,7 +33,7 @@ export default buildConfig({
       prefillOnly: true,
     },
   },
-  collections: [Users, Media, GuidesCollection],
+  collections: [Users, Media, GuidesCollection, SharedCodeCollection],
   editor: lexicalEditor({
     admin: {
       placeholder: 'Type your content here...',
@@ -41,7 +43,7 @@ export default buildConfig({
         ...defaultFeatures,
         FixedToolbarFeature(),
         EXPERIMENTAL_TableFeature(),
-        BlocksFeature({ blocks: [Code] }),
+        BlocksFeature({ blocks: [Code, SharedCode] }),
       ]
     },
   }),

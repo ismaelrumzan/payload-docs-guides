@@ -69,6 +69,7 @@ export interface Config {
     users: User;
     media: Media;
     guides: Guide;
+    sharedcode: Sharedcode;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     guides: GuidesSelect<false> | GuidesSelect<true>;
+    sharedcode: SharedcodeSelect<false> | SharedcodeSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -302,6 +304,25 @@ export interface Guide {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sharedcode".
+ */
+export interface Sharedcode {
+  id: number;
+  title: string;
+  language: 'typescript' | 'tsx' | 'javascript' | 'jsx' | 'pnpm' | 'npm' | 'bun' | 'css' | 'bash';
+  code: string;
+  /**
+   * An example path of the code block
+   */
+  pagePath?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
@@ -410,6 +431,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'guides';
         value: number | Guide;
+      } | null)
+    | ({
+        relationTo: 'sharedcode';
+        value: number | Sharedcode;
       } | null)
     | ({
         relationTo: 'payload-jobs';
@@ -591,6 +616,21 @@ export interface GuidesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sharedcode_select".
+ */
+export interface SharedcodeSelect<T extends boolean = true> {
+  title?: T;
+  language?: T;
+  code?: T;
+  pagePath?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs_select".
  */
 export interface PayloadJobsSelect<T extends boolean = true> {
@@ -660,10 +700,15 @@ export interface TaskSchedulePublish {
   input: {
     type?: ('publish' | 'unpublish') | null;
     locale?: string | null;
-    doc?: {
-      relationTo: 'guides';
-      value: number | Guide;
-    } | null;
+    doc?:
+      | ({
+          relationTo: 'guides';
+          value: number | Guide;
+        } | null)
+      | ({
+          relationTo: 'sharedcode';
+          value: number | Sharedcode;
+        } | null);
     global?: string | null;
     user?: (number | null) | User;
   };
@@ -683,6 +728,16 @@ export interface CodeBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'code';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SharedCodeBlock".
+ */
+export interface SharedCodeBlock {
+  sharedcodeblocks?: (number | null) | Sharedcode;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'sharedcode';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
