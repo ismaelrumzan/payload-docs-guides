@@ -1,10 +1,19 @@
 import type { CollectionConfig } from 'payload'
 import { Topics } from './topics'
+import { slugField } from '@/fields/slug'
+import { authenticated } from '@/access/authenticated'
+import { anyone } from '@/access/anyone'
 
 export const guidesSlug = 'guides'
 
 export const GuidesCollection: CollectionConfig = {
   slug: guidesSlug,
+  access: {
+    create: authenticated,
+    delete: authenticated,
+    read: anyone,
+    update: authenticated,
+  },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     useAsTitle: 'title',
@@ -69,6 +78,7 @@ export const GuidesCollection: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    ...slugField(),
   ],
   versions: {
     drafts: {

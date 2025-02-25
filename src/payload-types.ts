@@ -294,6 +294,8 @@ export interface Guide {
         | 'streaming'
       )[]
     | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -581,6 +583,8 @@ export interface GuidesSelect<T extends boolean = true> {
       };
   publishedAt?: T;
   topics?: T;
+  slug?: T;
+  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

@@ -1,18 +1,20 @@
-import React from 'react'
-import './styles.css'
+import type React from 'react'
+import './globals.css'
+import { Geist, Geist_Mono } from 'next/font/google'
 
-export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
-}
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+})
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-
   return (
-    <html lang="en">
-      <body>
-        <main>{children}</main>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geist.className} ${geistMono.variable} antialiased scroll-smooth`}>
+        {children}
       </body>
     </html>
   )

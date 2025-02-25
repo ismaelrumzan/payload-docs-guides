@@ -20,18 +20,21 @@
     "@payloadcms/richtext-lexical": "latest",
     "@payloadcms/storage-vercel-blob": "latest",
     "@payloadcms/ui": "latest",
+    "@tailwindcss/typography": "^0.5.16",
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "next": "15.1.5",
+    "next-themes": "^0.4.4",
     "payload": "^3.2.4",
     "prism-react-renderer": "^2.4.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "sharp": "0.32.6",
-    "tailwind-merge": "^3.0.1"
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -42,8 +45,9 @@
     "copyfiles": "^2.4.1",
     "eslint": "^9.16.0",
     "eslint-config-next": "15.1.5",
-    "postcss": "^8.4.38",
+    "postcss": "^8.5.3",
     "prettier": "^3.4.2",
+    "@tailwindcss/typography": "^0.5.13",
     "tailwindcss": "^3.4.3",
     "typescript": "5.7.3"
   },
