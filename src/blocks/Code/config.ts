@@ -8,19 +8,17 @@ export const Code: Block = {
       name: 'language',
       type: 'select',
       defaultValue: 'typescript',
+      required: true,
       options: [
-        {
-          label: 'Typescript',
-          value: 'typescript',
-        },
-        {
-          label: 'Javascript',
-          value: 'javascript',
-        },
-        {
-          label: 'CSS',
-          value: 'css',
-        },
+        { label: 'TypeScript', value: 'typescript' },
+        { label: 'TSX', value: 'tsx' },
+        { label: 'JavaScript', value: 'javascript' },
+        { label: 'JSX', value: 'jsx' },
+        { label: 'pnpm', value: 'pnpm' },
+        { label: 'npm', value: 'npm' },
+        { label: 'Bun', value: 'bun' },
+        { label: 'CSS', value: 'css' },
+        { label: 'Bash', value: 'bash' },
       ],
     },
     {
@@ -28,6 +26,13 @@ export const Code: Block = {
       type: 'code',
       label: false,
       required: true,
+    },
+    {
+      name: 'pagePath',
+      type: 'text',
+      admin: {
+        description: 'An example path of the code block',
+      },
     },
   ],
 }

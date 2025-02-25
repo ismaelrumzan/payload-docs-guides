@@ -674,8 +674,12 @@ export interface TaskSchedulePublish {
  * via the `definition` "CodeBlock".
  */
 export interface CodeBlock {
-  language?: ('typescript' | 'javascript' | 'css') | null;
+  language: 'typescript' | 'tsx' | 'javascript' | 'jsx' | 'pnpm' | 'npm' | 'bun' | 'css' | 'bash';
   code: string;
+  /**
+   * An example path of the code block
+   */
+  pagePath?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'code';
