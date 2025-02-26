@@ -4,6 +4,7 @@ import { slugField } from '@/fields/slug'
 import { authenticated } from '@/access/authenticated'
 import { anyone } from '@/access/anyone'
 import { revalidateDelete, revalidateGuide } from './hooks/revalidateGuide'
+import { generatePreviewPath } from '@/utilities/generate-preview-path'
 
 export const guidesSlug = 'guides'
 
@@ -17,6 +18,12 @@ export const GuidesCollection: CollectionConfig = {
   },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
+    preview: (data, { req }) =>
+      generatePreviewPath({
+        slug: typeof data?.slug === 'string' ? data.slug : '',
+        collection: 'guides',
+        req,
+      }),
     useAsTitle: 'title',
   },
   fields: [

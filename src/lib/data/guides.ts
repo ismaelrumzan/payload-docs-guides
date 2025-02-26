@@ -53,10 +53,10 @@ export const getGuideBySlug = cache(
       // Use forceDraft if provided, otherwise check draftMode
       const draft = forceDraft !== undefined ? forceDraft : await getDraftStatus()
       const payload = await getPayloadInstance()
-
       const result = await payload.find({
         collection: 'guides',
         draft,
+        overrideAccess: draft,
         where: {
           slug: {
             equals: slug,
