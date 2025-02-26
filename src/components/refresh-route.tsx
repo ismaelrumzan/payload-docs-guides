@@ -9,7 +9,11 @@ export const RefreshRouteOnSave = () => {
   return (
     <PayloadLivePreview
       refresh={() => router.refresh()}
-      serverURL={process.env.NEXT_PUBLIC_VERCEL_URL as string}
+      serverURL={
+        process.env.NEXT_PUBLIC_VERCEL_ENV === 'development'
+          ? 'http://localhost:3000'
+          : (`https://${process.env.NEXT_PUBLIC_VERCEL_URL}` as string)
+      }
     />
   )
 }
