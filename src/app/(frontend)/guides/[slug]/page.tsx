@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import RichText from '@/components/RichText'
 import { getGuideBySlug, getGuides } from '@/lib/data/guides'
 import { LastUpdated } from '@/components/lastupdated'
@@ -38,13 +38,11 @@ type Props = {
 export default async function Page({ params }: Props) {
   const resolvedParams = await params
   const guide = await getGuideBySlug(resolvedParams.slug)
-
   if (guide === null) {
     return notFound()
   }
-
   return (
-    <>
+    <Fragment>
       <RefreshRouteOnSave />
       <article className="pt-16 pb-16">
         <div className="prose mx-auto max-w-4xl">
@@ -67,6 +65,6 @@ export default async function Page({ params }: Props) {
           <RichText data={guide.content.richText} />
         </div>
       </article>
-    </>
+    </Fragment>
   )
 }
