@@ -36,7 +36,7 @@ type Props = {
 
 export default async function Page({ params }: Props) {
   const resolvedParams = await params
-  const guide = await getGuideBySlug(resolvedParams.slug, false)
+  const guide = await getGuideBySlug(resolvedParams.slug)
 
   if (guide === null) {
     return notFound()
