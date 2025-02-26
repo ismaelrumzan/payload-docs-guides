@@ -3,6 +3,7 @@ import { Topics } from './topics'
 import { slugField } from '@/fields/slug'
 import { authenticated } from '@/access/authenticated'
 import { anyone } from '@/access/anyone'
+import { revalidateDelete, revalidateGuide } from './hooks/revalidateGuide'
 
 export const guidesSlug = 'guides'
 
@@ -80,6 +81,10 @@ export const GuidesCollection: CollectionConfig = {
     },
     ...slugField(),
   ],
+  hooks: {
+    afterChange: [revalidateGuide],
+    afterDelete: [revalidateDelete],
+  },
   versions: {
     drafts: {
       autosave: {
