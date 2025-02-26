@@ -24,6 +24,17 @@ export const GuidesCollection: CollectionConfig = {
         collection: 'guides',
         req,
       }),
+    livePreview: {
+      url: ({ data, req }) => {
+        const path = generatePreviewPath({
+          slug: typeof data?.slug === 'string' ? data.slug : '',
+          collection: 'guides',
+          req,
+        })
+
+        return path
+      },
+    },
     useAsTitle: 'title',
   },
   fields: [
